@@ -1,0 +1,42 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/core-header-panel/core-header-panel.html">
+<link rel="import" href="/bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="/bower_components/core-icons/social-icons.html">
+<link rel="import" href="/bower_components/core-menu/core-menu.html">
+<link rel="import" href="/bower_components/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="/bower_components/paper-item/paper-item.html">
+
+<polymer-element name="lz-app">
+  <template>
+    <link rel="stylesheet" href="app.css">
+    <core-header-panel>
+      <div class="core-header">
+        <core-toolbar>
+          <div flex>Linkzor</div>
+          <paper-menu-button halign="right">
+            <paper-icon-button icon="social:person"></paper-icon-button>
+            <paper-dropdown class="dropdown" transition="">
+              <core-menu class="menu">
+                <paper-item on-click="{{login}}" hidden?="{{!statusKnown || user}}">Login</paper-item>
+                <paper-item on-click="{{logout}}" hidden?="{{!statusKnown || !user}}">Logout</paper-item>
+              </core-menu>
+            </paper-dropdown>
+          </paper-menu-button>
+        </core-toolbar>
+      </div>
+      <div class="content"></div>
+    </core-header-panel>
+  </template>
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        // define element prototype here
+      });
+
+    })();
+  </script>
+</polymer-element>
