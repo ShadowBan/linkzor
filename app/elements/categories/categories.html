@@ -1,0 +1,63 @@
+<link rel="import" href="/bower_components/firebase-element/firebase-element.html">
+<link rel="import" href="/bower_components/pvc-globals/pvc-globals.html">
+<link rel="import" href="/bower_components/paper-dialog/paper-action-dialog.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-input/paper-input.html">
+<link rel="import" href="/bower_components/paper-input/paper-autogrow-textarea.html">
+
+<polymer-element name="lz-categories">
+  <template>
+    <firebase-element id="base" location="https://{{globals.firebase}}.firebaseio.com/categories" data="{{categories}}" keys="{{keys}}"></firebase-element>
+    <pvc-globals values="{{globals}}"></pvc-globals>
+    <template repeat="{{id in keys}}">
+      <paper-shadow z="1">
+        <div class="category">
+          {{categories[id]['name']}}
+        </div>
+      </paper-shadow>
+    </template>
+    <div class="add-category">
+      New Category?
+      <button on-click="{{openDialog}}">
+        Add it!
+        <paper-action-dialog id="categoryDialog" heading="Add Category" transition="core-transition-bottom">
+          <form>
+            <paper-input id="name" label="Category Name"></paper-input>
+          </form>
+          <paper-button affirmative autofocus on-click="{{submitCategory}}">Add</paper-button>
+        </paper-action-dialog>
+      </button>
+    </div>
+  </template>
+  <script>
+    (function () {
+      'use strict';
+      Polymer({
+        openDialog: function() {
+          this.$.categoryDialog.toggle();
+        },
+        submitCategory: function() {
+          if (!this.$.name.value.length) {
+            alert('Please write a category.');
+            return;
+          }
+          var category = this.$.base.push({
+            name: this.$.name.value,
+            user: {
+              uid: this.globals.currentUser.uid,
+              username: this.globals.currentUser.github.username,
+              avatar_url: this.globals.currentUser.github.cachedUserProfile.avatar_url,
+              html_url: this.globals.currentUser.github.cachedUserProfile.html_url
+            },
+            timestamp: new Date().getTime()
+          });
+          this.$.name.value = '';
+        },
+        viewQuestion: function(e) {
+          var id = e.target.getAttribute('question-id');
+          document.location.href = '/#/questions/' + id;
+        }
+      });
+    })();
+  </script>
+</polymer-element>

@@ -8,9 +8,18 @@
 <link rel="import" href="/bower_components/paper-menu-button/paper-menu-button.html">
 <link rel="import" href="/bower_components/paper-item/paper-item.html">
 
+<link rel="import" href="/bower_components/firebase-element/firebase-element.html">
+<link rel="import" href="/bower_components/firebase-element/firebase-login.html">
+
+<link rel="import" href="/bower_components/pvc-globals/pvc-globals.html">
+
 <polymer-element name="lz-app">
   <template>
     <link rel="stylesheet" href="app.css">
+
+    <firebase-login id="baseLogin" user="{{user}}" statusKnown="{{statusKnown}}" location="https://{{globals.firebase}}.firebaseio.com" provider="github" on-login="{{onLogin}}" on-error="{{onLoginError}}"></firebase-login>
+    <pvc-globals values="{{globals}}"></pvc-globals>
+
     <core-header-panel>
       <div class="core-header">
         <core-toolbar>
@@ -24,9 +33,14 @@
               </core-menu>
             </paper-dropdown>
           </paper-menu-button>
+          <template if="{{user}}">{{user.github.username}}</template>
         </core-toolbar>
       </div>
-      <div class="content"></div>
+      <div class="content" horizontal layout>
+        <div flex><lz-categories></lz-categories></div>
+        <div flex three><lz-feed></lz-feed></div>
+      </div>
+      <content></content>
     </core-header-panel>
   </template>
   <script>
@@ -34,7 +48,23 @@
       'use strict';
 
       Polymer({
-        // define element prototype here
+        currentCategory: '',
+        
+        ready: function() {
+          this.globals.firebase = 'linkzor';
+        },
+        login: function() {
+          this.$.baseLogin.login();
+        },
+        logout: function() {
+          this.$.baseLogin.logout();
+        },
+        onLogin: function() {
+          this.globals.currentUser = this.user;
+        },
+        onLoginError: function(err) {
+          console.log('An error occurred.');
+        }
       });
 
     })();

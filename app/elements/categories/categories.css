@@ -1,0 +1,42 @@
+:host {
+  display: block;
+}
+.question {
+  padding: 20px;
+  background: #fff;
+}
+.question h3 {
+  margin: 0;
+}
+.question h3 a {
+  color: #333;
+  text-decoration: none;
+}
+.question h3 a:hover {
+  color: #3F51B5;
+}
+.question .user {
+  padding-right: 20px;
+}
+.question .user img {
+  border-radius: 50%;
+}
+.question .details {
+}
+.question .details p {
+  color: #616161;
+  margin: 8px 0;
+}
+.question .metadata {
+  font-size: 12px;
+  color: #BDBDBD;
+}
+.question .metadata a {
+  color: #616161;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+}
+.ask-question {
+  padding: 20px;
+  text-align: center;
+}
