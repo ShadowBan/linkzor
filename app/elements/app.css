@@ -18,20 +18,11 @@ core-toolbar {
 
 .core-header {
   height: 60px;
-  line-height: 60px;
   font-size: 18px;
   padding: 0 10px;
   background-color: #3F51B5;
   color: #fff;
   
-}
-
-.core-header paper-item {
-  color: #333;
-}
-
-.core-header paper-menu-button {
-  height: 40px;
 }
 
 .content {

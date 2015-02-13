@@ -1,0 +1,10 @@
+paper-item {
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+paper-icon-button::shadow #icon {
+  display: inline-block;
+}
