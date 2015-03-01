@@ -4,35 +4,43 @@
 <link rel="import" href="/bower_components/paper-button/paper-button.html">
 <link rel="import" href="/bower_components/paper-input/paper-input.html">
 <link rel="import" href="/bower_components/paper-input/paper-autogrow-textarea.html">
+<link rel="import" href="/bower_components/core-item/core-item.html">
 
 <polymer-element name="lz-categories">
   <template>
     <firebase-element id="base" location="https://{{globals.firebase}}.firebaseio.com/categories" data="{{categories}}" keys="{{keys}}"></firebase-element>
     <pvc-globals values="{{globals}}"></pvc-globals>
-    <template repeat="{{id in keys}}">
-      <paper-shadow z="1">
-        <div class="category">
-          {{categories[id]['name']}}
-        </div>
-      </paper-shadow>
-    </template>
-    <div class="add-category">
-      New Category?
-      <button on-click="{{openDialog}}">
-        Add it!
-        <paper-action-dialog id="categoryDialog" heading="Add Category" transition="core-transition-bottom">
-          <form>
-            <paper-input id="name" label="Category Name"></paper-input>
-          </form>
-          <paper-button affirmative autofocus on-click="{{submitCategory}}">Add</paper-button>
-        </paper-action-dialog>
-      </button>
-    </div>
+
+
+    <core-header-panel>
+      <core-toolbar>Categories</core-toolbar>
+
+      <core-menu selected="0">  
+        <template repeat="{{category_id in keys}}">
+          <core-item label="{{categories[category_id]['name']}}"></core-item>
+        </template>
+      </core-menu>
+
+      <div class="add-category">
+        New Category?
+        <button on-click="{{openDialog}}">
+          Add it!
+          <paper-action-dialog id="categoryDialog" heading="Add Category" transition="core-transition-bottom">
+            <form>
+              <paper-input id="name" label="Category Name"></paper-input>
+            </form>
+            <paper-button affirmative autofocus on-click="{{submitCategory}}">Add</paper-button>
+          </paper-action-dialog>
+        </button>
+      </div>
+    </core-header-panel>
   </template>
   <script>
     (function () {
       'use strict';
       Polymer({
+        ready: function(){
+        },
         openDialog: function() {
           this.$.categoryDialog.toggle();
         },
@@ -53,9 +61,8 @@
           });
           this.$.name.value = '';
         },
-        viewQuestion: function(e) {
-          var id = e.target.getAttribute('question-id');
-          document.location.href = '/#/questions/' + id;
+        removeCategory: function(event, detail, sender) {
+          this.$.base.remove(sender.getAttribute("data-category"));
         }
       });
     })();

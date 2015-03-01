@@ -17,17 +17,21 @@
     <pvc-globals values="{{globals}}"></pvc-globals>
 
     <core-header-panel>
-      <div class="core-header">
-        <core-toolbar>
-          <div flex>Linkzor</div>
-          <login-badge halidn="right"></login-badge>
-        </core-toolbar>
+      <!-- Main Toolbar -->
+      <core-toolbar>
+        <span>{{appName}}</span>
+        <login-badge halidn="right"></login-badge>
+      </core-toolbar>
+
+      <div>
+        <lz-categories></lz-categories>
+
+        <!-- Main Content -->
+        <div class="hero-unit">
+          <lz-feed></lz-feed>
+          <content></content>
+        </div>
       </div>
-      <div class="content" horizontal layout>
-        <div flex><lz-categories></lz-categories></div>
-        <div flex three><lz-feed></lz-feed></div>
-      </div>
-      <content></content>
     </core-header-panel>
   </template>
   <script>
@@ -35,6 +39,7 @@
       'use strict';
       Polymer({
         currentCategory: '',
+        appName: "Linkzor!",
         ready: function() {
           this.globals.firebase = 'linkzor';
         }

@@ -18,7 +18,7 @@
 
     <paper-menu-button>
       <paper-icon-button icon="social:person" noink></paper-icon-button>
-      <paper-dropdown class="dropdown" transition="">
+      <paper-dropdown class="dropdown">
         <core-menu class="menu">
           <paper-item on-click="{{login}}" hidden?="{{!statusKnown || user}}">Login</paper-item>
           <paper-item on-click="{{logout}}" hidden?="{{!statusKnown || !user}}">Logout</paper-item>
