@@ -9,30 +9,30 @@
 <link rel="import" href="categories/categories.html">
 <link rel="import" href="feed/feed.html">
 <link rel="import" href="login-badge/login-badge.html">
+<link rel="import" href="app-layout/app-layout.html">
 
 <polymer-element name="lz-app">
   <template>
     <link rel="stylesheet" href="app.css">
    
     <pvc-globals values="{{globals}}"></pvc-globals>
+  
+    <lz-app-layout>
+      <!-- Header -->
+      <span header>{{appName}}</span>
+      <span header flex></span>
+      <login-badge header></login-badge>
 
-    <core-header-panel>
-      <!-- Main Toolbar -->
-      <core-toolbar>
-        <span>{{appName}}</span>
-        <login-badge halidn="right"></login-badge>
-      </core-toolbar>
-
-      <div>
+      <!-- Main Body -->
+      <div main id='categories'  flex>
         <lz-categories></lz-categories>
-
-        <!-- Main Content -->
-        <div class="hero-unit">
-          <lz-feed></lz-feed>
-          <content></content>
-        </div>
       </div>
-    </core-header-panel>
+
+      <div main id='content' flex five>
+        <lz-feed></lz-feed>
+      </div>
+    </lz-app-layout>
+
   </template>
   <script>
     (function () {

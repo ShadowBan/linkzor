@@ -1,0 +1,31 @@
+<!-- 
+  This is now just an example as it is apparently not a great idea
+  This level of abstraction gets weird as there is a mixing onf lightdom
+  and shadowdom that polymer right now doesn't seem to like.
+  An example of this is if I try and use the flex attribute in the content
+  that I  am importing than it would not flex properly
+ -->
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/core-header-panel/core-header-panel.html">
+<link rel="import" href="/bower_components/core-toolbar/core-toolbar.html">
+
+
+<polymer-element name="lz-app-layout">
+  <template>
+    <link rel="stylesheet" href="app-layout.css">
+      <!-- Main Toolbar -->
+    <core-toolbar>
+      <content select=[header]></content>
+    </core-toolbar>
+    
+    <div layout horizontal>  
+      <content select=[main]></content>
+    </div>
+  </template>
+  <script>
+    (function () {
+      'use strict';
+      Polymer({});
+    })();
+  </script>
+</polymer-element>

@@ -12,8 +12,10 @@
     <pvc-globals values="{{globals}}"></pvc-globals>
 
 
-    <core-header-panel>
-      <core-toolbar>Categories</core-toolbar>
+    
+      <core-toolbar>
+        <span>Categories</span>
+      </core-toolbar>
 
       <core-menu selected="0">  
         <template repeat="{{category_id in keys}}">
@@ -33,7 +35,7 @@
           </paper-action-dialog>
         </button>
       </div>
-    </core-header-panel>
+      
   </template>
   <script>
     (function () {
