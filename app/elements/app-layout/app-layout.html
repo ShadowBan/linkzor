@@ -11,13 +11,15 @@
     <core-header-panel flex fit>
       <core-toolbar class="core-header">
         <core-icon-button icon="menu" on-tap='{{toggleDrawer}}' hidden?="{{drawerOpen}}"></core-icon-button>
-        <span>Hello: {{drawerOpen ? "open" : "closed"}}</span>
         <content select=[header]></content>
       </core-toolbar>
-      <core-drawer-panel id='appDrawer'>  
+
         <content select=[drawer] drawer></content>
-        <content select=[main] main></content>
-      </core-drawer-panel>
+         <div class="content" paper-font-style="body-1">
+          
+              <content select=[main] main></content>
+        </div>  
+
     </core-header-panel>
   </template>
   <script>
@@ -29,7 +31,6 @@
           '$.appDrawer.narrow': 'drawerFoldChange'
         },
         drawerFoldChange: function(oldValue,newValue){
-          console.log(!newValue);
           this.drawerOpen = !newValue;
         },
         toggleDrawer: function(){
@@ -39,3 +40,11 @@
     })();
   </script>
 </polymer-element>
+
+
+
+
+      <polyfora-forum-index data="{{data}}"></polyfora-forum-index>
+      <polyfora-user data="{{data}}"></polyfora-user>
+      <polyfora-forum data="{{data}}"></polyfora-forum>
+      <polyfora-thread data="{{data}}"></polyfora-thread>

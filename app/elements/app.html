@@ -1,15 +1,21 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 <link rel="import" href="/bower_components/core-header-panel/core-header-panel.html">
 <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="/bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="/bower_components/core-tags/core-tags.html">
+<link rel="import" href="/bower_components/core-tag/core-tag.html">
+
+<link rel="import" href="/bower_components/more-routing/more-route-selector.html">
 
 <link rel="import" href="/bower_components/firebase-element/firebase-element.html">
-
 <link rel="import" href="/bower_components/pvc-globals/pvc-globals.html">
 
+<link rel="import" href="routes.html">
 <link rel="import" href="categories/categories.html">
-<link rel="import" href="feed/feed.html">
+<link rel="import" href="question-feed/question-feed.html">
 <link rel="import" href="login-badge/login-badge.html">
 <link rel="import" href="app-layout/app-layout.html">
+<link rel="import" href="question-details/question-details.html">
 
 <polymer-element name="lz-app">
   <template>
@@ -19,13 +25,22 @@
   
     <lz-app-layout>
       <!-- Header -->
-      <span header>{{appName}}</span>
+      <a href="{{urlFor('root')}}" header>{{appName}}</a>
       <span header flex></span>
       <login-badge header></login-badge>
+      <core-tabs header flex>
+        <core-tab>Hello</core-tab>
+      </core-tabs>
 
       <!-- Main Body -->
-      <lz-categories drawer></lz-categories>
-      <lz-feed main></lz-feed>
+      <a href="{{urlFor('question-detail',{id: 1})}}" drawer>Test</a> 
+      <!-- <lz-categories drawer></lz-categories> -->
+      <more-route-selector selectedParams="{{params}}" main>
+        <core-animated-pages transitions="hero-transition cross-fade">
+          <question-feed ></question-feed>
+          <question-details ></question-details>
+        </core-animated-pages>
+      </more-route-selector>
     </lz-app-layout>
 
   </template>

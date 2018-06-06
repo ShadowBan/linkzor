@@ -1,16 +1,19 @@
 <link rel="import" href="/bower_components/firebase-element/firebase-element.html">
 <link rel="import" href="/bower_components/pvc-globals/pvc-globals.html">
+<link rel="import" href="/bower_components/more-routing/more-route-selector.html">
 
 
-<polymer-element name="lz-feed">
+<polymer-element name="question-details">
   <template>
+    <more-route context name="question-detail" params="{{params}}"></more-route>
     <firebase-element id="base" location="https://{{globals.firebase}}.firebaseio.com/feed" data="{{feed-items}}" keys="{{keys}}"></firebase-element>
     <pvc-globals values="{{globals}}"></pvc-globals>
-    <div>
+
+    <section>
       <paper-shadow z="1">
-        Hello World!
+        question details!
       </paper-shadow>
-    </div>
+    </section>
   </template>
   <script>
     (function () {

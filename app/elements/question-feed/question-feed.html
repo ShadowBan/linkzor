@@ -1,0 +1,24 @@
+<link rel="import" href="/bower_components/firebase-element/firebase-element.html">
+<link rel="import" href="/bower_components/pvc-globals/pvc-globals.html">
+<link rel="import" href="/bower_components/more-routing/more-route-selector.html">
+
+
+<polymer-element name="question-feed">
+  <template>
+    <more-route context name="root" params="{{params}}"></more-route>
+    <firebase-element id="base" location="https://{{globals.firebase}}.firebaseio.com/feed" data="{{feed-items}}" keys="{{keys}}"></firebase-element>
+    <pvc-globals values="{{globals}}"></pvc-globals>
+
+    <paper-shadow z="1">
+      Hello World!
+    </paper-shadow>
+  </template>
+  <script>
+    (function () {
+      'use strict';
+      Polymer({
+        
+      });
+    })();
+  </script>
+</polymer-element>
